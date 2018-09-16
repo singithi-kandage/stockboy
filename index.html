@@ -1,0 +1,576 @@
+<!--
+Mobile Web Development
+Assignment 3
+
+File Name: index.html
+Created by: Singithi Kandage
+email:      skandage3182@conestogac.on.ca
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>StockBoy</title>
+        <!--jQuery-->
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <!--jQuery mobile-->
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <!--jQuery mobile css-->
+        <link rel="stylesheet" type="text/css" href="css/lib/jquery.mobile-1.4.5.css">
+        <!--Validation library-->
+        <script src="js/lib/jquery.validate.js"></script>
+
+        <!--google api key-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPX_q92srFkp7sbM_qJ9XetJ9BzvmjITs"
+                type="text/javascript"></script>
+
+        <!--our scripts-->
+        <script src="js/database.js"></script>
+        <script src="js/util.js"></script>
+        <script src="js/stockboyDAL.js"></script>
+        <script src="js/facade.js"></script>
+        <script src="js/global.js"></script>
+        <script src="js/geo.js"></script>
+        <!--our Styles-->
+        <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+
+    </head>
+    <body>
+
+
+    <!--Sign In page-->
+    <div data-role="page" id="pageSignIn" class="background">
+        <div role="main" class="yellow-centered-rounded" align="center" id="divSignInModal">
+            <img src="img/logo-img.png" class="logo-img">
+            <h1 class="logo">StockBoy</h1>
+            <form id="frmSignIn" name="frmSignIn" data-ajax="false">
+                <label for="txtUsername">Username</label>
+                <input type="text" name="txtUsername" id="txtUsername" value="">
+                <label for="txtPassword">Password</label>
+                <input type="password" name="txtPassword" id="txtPassword" value="">
+                <br/>
+                <a id="btnSubmit" class="ui-btn ui-corner-all mc-top-margin-1-5 btn-green">Submit</a>
+            </form>
+            <p><a id="lnkRegister">Register</a></p>
+        </div><!-- /content -->
+    </div><!-- Sign In page ends -->
+
+
+    <!--Register page-->
+    <div data-role="page" data-url="registerPage" id="pageRegister" class="background">
+        <div role="main" class="yellow-centered-rounded" id="divRegister">
+
+            <div align="center">
+                <img src="img/logo-img.png" class="logo-img">
+                <h1 class="logo">StockBoy</h1>
+                <h3>Register</h3>
+            </div>
+
+            <form id="frmRegister" name="frmRegister" data-ajax="false">
+
+                <label for="txtRegUsername">Username</label>
+                <input type="text" name="txtRegUsername" id="txtRegUsername" value="">
+
+                <label for="txtFirstName">First Name</label>
+                <input type="text" name="txtFirstName" id="txtFirstName" value="">
+
+                <label for="txtLastName">Last Name</label>
+                <input type="text" name="txtLastName" id="txtLastName" value="">
+
+                <label for="txtEmail">Email Address</label>
+                <input type="text" name="txtEmail" id="txtEmail" value="">
+
+                <label for="txtRegPassword">Password</label>
+                <input type="password" name="txtRegPassword" id="txtRegPassword" value="">
+
+                <label for="txtPasswordConfirm">Confirm Password</label>
+                <input type="password" name="txtPasswordConfirm" id="txtPasswordConfirm" value="">
+
+                <label for="datDOB">Date of Birth</label>
+                <input type="date" id="datDOB" name="datDOB" data-theme="a" data-clear-btn="true">
+
+                <label>Address</label>
+
+                <label for="txtLine1">Address(Line 1):</label>
+                <input type="text" id="txtLine1" name="txtLine1" data-theme="a" data-clear-btn="true">
+
+                <label for="txtCity">City:</label>
+                <input type="text" id="txtCity" name="txtCity" data-theme="a" data-clear-btn="true">
+
+                <label for="selProvince">Province:</label>
+                <select id="selProvince" name="selProvince">
+                    <!-- TODO: Autgenerate provinces -->
+                </select>
+
+                <label for="txtPostalCode">Postal Code:</label>
+                <input type="text" id="txtPostalCode" name="txtPostalCode" data-theme="a" data-clear-btn="true">
+
+                <br/>
+
+                <input type="checkbox" id="chxIsVendor" name="chxIsVendor" data-theme="a" data-iconpos="left">
+                <label for="chxIsVendor">I am a vendor</label>
+
+                <div id="divVendorDetails">
+                    <label for="txtBusinessName">Business Name</label>
+                    <input type="text" name="txtBusinessName" id="txtBusinessName" value="">
+
+                    <label>Business Location</label>
+
+                    <label for="txtVLine1">Address (Line 1):</label>
+                    <input type="text" id="txtVLine1" name="txtVLine1" data-theme="a" data-clear-btn="true">
+
+                    <label for="txtVTown">Town:</label>
+                    <input type="text" id="txtVTown" name="txtVTown" data-theme="a" data-clear-btn="true">
+
+                    <label for="selVProvince">Province:</label>
+                    <select id="selVProvince" name="selVProvince">
+                        <!-- Generate provinces here -->
+                    </select>
+
+                    <label for="txtVPostalCode">Postal Code:</label>
+                    <input type="text" id="txtVPostalCode" name="txtVPostalCode" data-theme="a" data-clear-btn="true">
+
+                    <label for="txtVPhone">Business Phone:</label>
+                    <input type="text" id="txtVPhone" name="txtVPhone" data-theme="a" data-clear-btn="true">
+
+                    <label for="txtVEmail">Business Email:</label>
+                    <input type="text" name="txtVEmail" id="txtVEmail" value="">
+
+                </div>
+            </form>
+
+            <br/>
+
+            <a href="#" type="button" id="btnRegister" class="ui-btn ui-corner-all mc-top-margin-1-5 btn-green">Submit</a>
+        </div><!-- /content -->
+    </div><!-- Register page end -->
+
+    <!--Account page-->
+    <div data-role="page" data-url="accountPage" id="pageAccount" class="page-background">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <img src="img/logo-img.png" class="ui-btn-left header-logo"/>
+            <h1>StockBoy</h1>
+            <a href="#pageAccount" data-theme="b" data-icon="user" class="ui-btn-right account-btn">Account</a>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#pageHome" data-icon="home" data-theme="a" class="ui-btn-active ui-state-persist">About</a></li>
+                    <li><a href="#pageProducts" data-icon="shop" data-theme="a">Products</a></li>
+                    <li><a href="#pageVendors" data-icon="bars" data-theme="a">Vendors</a></li>
+                    <li><a href="#pageMyFarm" data-icon="grid" data-theme="a" class="farm-page-link">MyFarm</a></li>
+                    <li><a href="#pageShoppingList" data-icon="heart" data-theme="a">Shopping List</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section data-role="content">
+            <h3 align="center">Account Details</h3>
+
+            <div id="accountDetails" name="accountDetails">
+                <p>Username: <span id="accountUsername"></span></p>
+                <p>First Name: <span id="accountFirstName"></span></p>
+                <p>Last Name: <span id="accountLastName"></span></p>
+                <p>Email: <span id="accountEmail"></span></p>
+                <p>Is Vendor: <span id="accountIsVendor"></span></p>
+                <br/>
+            </div>
+
+            <button type="button" id="btnSignOut" name="btnSignOut" data-theme="a">
+                Sign Out
+            </button>
+
+        </section>
+
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h1> &copy; Brett Hall and Singithi Kandage </h1>
+        </footer>
+    </div><!-- Account page end -->
+
+    <!--Home page-->
+    <div data-role="page" data-url="homePage" id="pageHome" class="page-background">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <img src="img/logo-img.png" class="ui-btn-left header-logo"/>
+            <h1>StockBoy</h1>
+            <a href="#pageAccount" data-theme="b" data-icon="user" class="ui-btn-right account-btn">Account</a>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#pageHome" data-icon="home" data-theme="a" class="ui-btn-active ui-state-persist">About</a></li>
+                    <li><a href="#pageProducts" data-icon="shop" data-theme="a">Products</a></li>
+                    <li><a href="#pageVendors" data-icon="bars" data-theme="a">Vendors</a></li>
+                    <li><a href="#pageMyFarm" data-icon="grid" data-theme="a" class="farm-page-link">MyFarm</a></li>
+                    <li><a href="#pageShoppingList" data-icon="heart" data-theme="a">Shopping List</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section data-role="content">
+            <h1 class="logo" align="center">StockBoy</h1>
+            <h3 align="center">An app for local food economies.</h3>
+            <div align="center">
+                <img src="img/logo-img.png" alt="StockBoy Icon">
+            </div>
+            <h4>About</h4>
+            <p>Developers: Brett Hall and Singithi Kandage</p>
+            <p>StockBoy is a mobile app designed to help connect those interested and motivated in supporting
+                locally-grown food and grocery products with the producers and growers in their community. We
+                recognize the impact that consumer participation in the local food system, including encouraging
+                organic farming practices, and creating greater prosperity for local producers, making local food
+                more accessible to interested consumers, and supporting greater community food security.</p>
+            <p>StockBoy will allow users to use the app as either a customer or a vendor, or both. Vendors may be
+                producers of local food. Vendors will be given the opportunity to register the location of their
+                farm and/or an affiliated pick-up location, along with a short bio about what they do, and some of
+                what they grow. </p>
+            <p>Please feel free to contact us if you have any questions!</p>
+            <a href="http://www.conestogac.on.ca/" data-role="button" data-icon="plus" data-iconpos="left" data-theme="a"
+               data-rel="external">Call: 519.954.1909</a>
+            <a href="http://www.conestogac.on.ca/" data-role="button" data-icon="plus" data-iconpos="left" data-theme="a"
+               data-rel="external">info@stockboy.ca</a>
+            <p>Website:</p>
+            <a href="http://www.conestogac.on.ca/" data-role="button" data-icon="plus" data-iconpos="left" data-theme="a"
+               data-rel="external">StockBoy Website</a>
+        </section>
+
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h1> &copy; Brett Hall and Singithi Kandage </h1>
+        </footer>
+    </div><!-- Home page end -->
+
+    <!--Products page-->
+    <div data-role="page" data-url="pageProducts" id="pageProducts" class="page-background">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <img src="img/logo-img.png" class="ui-btn-left header-logo"/>
+            <h1>StockBoy</h1>
+            <a href="#pageAccount" data-theme="b" data-icon="user" class="ui-btn-right account-btn">Account</a>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#pageHome" data-icon="home" data-theme="a">About</a></li>
+                    <li><a href="#pageProducts" data-icon="shop" data-theme="a" class="ui-btn-active ui-state-persist">Products</a></li>
+                    <li><a href="#pageVendors" data-icon="bars" data-theme="a">Vendors</a></li>
+                    <li><a href="#pageMyFarm" data-icon="grid" data-theme="a" class="farm-page-link">MyFarm</a></li>
+                    <li><a href="#pageShoppingList" data-icon="heart" data-theme="a">Shopping List</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section data-role="content">
+
+            <h3 align="center">Local Products</h3>
+
+            <div align="center">
+                <fieldset data-role="controlgroup" data-type="horizontal">
+                    <input type="radio" id="radMapView" name="radType" checked="checked" data-theme="a"
+                           data-iconpos="left">
+                    <label for="radMapView">Map View</label>
+
+                    <input type="radio" id="radListView" name="radType" data-theme="a"
+                           data-iconpos="left" >
+                    <label for="radListView">List View</label>
+                </fieldset>
+            </div>
+
+            <form class="ui-filterable">
+                <input id="filterProducts" data-type="search">
+            </form>
+
+            <ul data-role="listview" data-filter="true" data-input="#filterProducts" class="ui-listview-inset" id="lstLocalProducts" name="lstLocalProducts">
+                <!-- Autogenerate all products--->
+            </ul>
+
+            <div data-role="popup" id="dlgProductDetail" style="max-width:80vw;">
+                <div data-role="header">
+                    <h1>Product</h1>
+                </div>
+                <div role="main" class="ui-content">
+                    <img src="img/vegetable.png" class="list-icon">
+                    <h3 id="dlg-pd-productName"></h3>
+                    <p id="dlg-pd-productPrice"></p>
+                    <p id="dlg-pd-productDescription"></p>
+                    <p id="dlg-pd-productVendor"></p>
+                    <div class="mc-text-center">
+                        <a class="ui-btn ui-corner-all ui-shadow mc-top-margin-1-5" id="btnSaveListItem" name="btnSaveListItem">
+                        Save to Shopping List</a>
+                    </div>
+                </div>
+            </div>
+
+            <div role="main" id="map-canvas">
+                <!--map loads here-->
+            </div>
+
+        </section>
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h1> &copy; Brett Hall and Singithi Kandage </h1>
+        </footer>
+    </div><!-- Products page end -->
+
+
+    <!--Vendors page-->
+    <div data-role="page" data-url="pageVendors"  id="pageVendors" class="page-background">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <img src="img/logo-img.png" class="ui-btn-left header-logo"/>
+            <h1>StockBoy</h1>
+            <a href="#pageAccount" data-theme="b" data-icon="user" class="ui-btn-right account-btn">Account</a>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#pageHome" data-icon="home" data-theme="a">About</a></li>
+                    <li><a href="#pageProducts" data-icon="shop" data-theme="a">Products</a></li>
+                    <li><a href="#pageVendors" data-icon="bars" data-theme="a" class="ui-btn-active ui-state-persist">Vendors</a></li>
+                    <li><a href="#pageMyFarm" data-icon="grid" data-theme="a" class="farm-page-link">MyFarm</a></li>
+                    <li><a href="#pageShoppingList" data-icon="heart" data-theme="a">Shopping List</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section data-role="content">
+
+            <h3 align="center">Vendors</h3>
+
+            <form class="ui-filterable">
+                <input id="filterVendors" data-type="search">
+            </form>
+
+            <!-- Vendors autogenerated here -->
+            <ul data-role="listview" data-filter="true" data-input="#filterVendors" class="ui-listview-inset" id="lstAllVendors">
+                <!-- Generate all vendors -->
+            </ul>
+
+            <div data-role="popup" id="dlgVendorDetail" style="max-width:80vw;">
+                <div data-role="header">
+                    <h1>Vendor</h1>
+                </div>
+                <div role="main" class="ui-content">
+                    <img src="img/vegetable.png" class="list-icon">
+                    <h3 id="dlg-vd-VendorName"></h3>
+                    <p id="dlg-vd-VendorAddress"></p>
+                    <p id="dlg-vd-VendorTown"></p>
+                    <p id="dlg-vd-VendorProvince"></p>
+                    <p id="dlg-vd-VendorPhone"></p>
+                    <p id="dlg-vd-VendorEmail"></p>
+                </div>
+            </div>
+        </section>
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h1> &copy; Brett Hall and Singithi Kandage </h1>
+        </footer>
+    </div> <!-- Vendors page end -->
+
+
+    <!--MyFarm page--> <!-- Only shows if logged in user is a vendor-->
+    <div data-role="page" data-url="pageMyFarm" id="pageMyFarm"  class="page-background">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <img src="img/logo-img.png" class="ui-btn-left header-logo"/>
+            <h1>StockBoy</h1>
+            <a href="#pageAccount" data-theme="b" data-icon="user" class="ui-btn-right account-btn">Account</a>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#pageHome" data-icon="home" data-theme="a">About</a></li>
+                    <li><a href="#pageProducts" data-icon="shop" data-theme="a">Products</a></li>
+                    <li><a href="#pageVendors" data-icon="bars" data-theme="a">Vendors</a></li>
+                    <li><a href="#pageMyFarm" data-icon="grid" data-theme="a" class="ui-btn-active ui-state-persist farm-page-link">MyFarm</a></li>
+                    <li><a href="#pageShoppingList" data-icon="heart" data-theme="a">Shopping List</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section data-role="content">
+
+            <h3 align="center">My Farm</h3>
+
+            <a href="#pageAddProduct">
+                <button type="button" id="btnAddProduct" name="btnAddProduct" data-icon="plus" data-iconpos="right" data-theme="a">
+                    Add a Product
+                </button>
+            </a>
+
+            <div align="center">
+                <fieldset data-role="controlgroup" data-type="horizontal">
+                    <input type="radio" id="radMyListView" name="radMyType" data-theme="a" checked="checked"
+                           data-iconpos="left" class="wide-radio-control">
+                    <label for="radMyListView">List View</label>
+                    <input type="radio" id="radMyMapView" name="radMyType" data-theme="a"
+                           data-iconpos="left" class="wide-radio-control">
+                    <label for="radMyMapView">Map View</label>
+                </fieldset>
+            </div>
+
+            <!-- List of all Vendor's Products goes here -->
+            <ul data-role="listview" class="ui-listview-inset" id="lstMyLocalProducts" name="lstMyLocalProducts">
+                <!-- Generate logged in vendor's products -->
+            </ul>
+
+            <div role="main" id="my-map-canvas">
+                <!--map loads here-->
+            </div>
+
+        </section>
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h1> &copy; Brett Hall and Singithi Kandage </h1>
+        </footer>
+    </div> <!-- MyFarm page end -->
+
+
+    <!--AddProduct page--> <!-- Only available if logged in user is a vendor-->
+    <div data-role="page" id="pageAddProduct" data-url="pageAddProduct" class="page-background">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <img src="img/logo-img.png" class="ui-btn-left header-logo"/>
+            <h1>StockBoy</h1>
+            <a href="#pageAccount" data-theme="b" data-icon="user" class="ui-btn-right account-btn">Account</a>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#pageHome" data-icon="home" data-theme="a">About</a></li>
+                    <li><a href="#pageProducts" data-icon="shop" data-theme="a">Products</a></li>
+                    <li><a href="#pageVendors" data-icon="bars" data-theme="a">Vendors</a></li>
+                    <li><a href="#pageMyFarm" data-icon="grid" data-theme="a" class="ui-btn-active ui-state-persist farm-page-link">MyFarm</a></li>
+                    <li><a href="#pageShoppingList" data-icon="heart" data-theme="a">Shopping List</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section data-role="content">
+
+            <h3 align="center">Add a Product</h3>
+
+            <form name="frmAddVendorProduct" id="frmAddVendorProduct">
+
+                <label for="selAddProduct">Product</label>
+                <select id="selAddProduct" name="selAddProduct">
+                    <!-- Autogenerate products here-->
+                </select>
+
+                <label for="txtAddQuantity">Quantity On Hand</label>
+                <input type="number" id="txtAddQuantity" name="txtAddQuantity" value="">
+
+                <label for="txtAddPrice">Price</label>
+                <input type="text" id="txtAddPrice" name="txtAddPrice" value="">
+
+                <label for="chxAddOnSale">
+                    <input type="checkbox" class="" name="chxAddOnSale" id="chxAddOnSale" data-theme="a" data-iconpos="left">On Sale
+                </label>
+
+                <div data-role="controlgroup" data-type="horizontal">
+                    <a href="#" id="btnAddSave" name="btnAddSave" data-role="button" data-theme="b">Save</a>
+                    <a href="#pageMyFarm" id="btnAddCancel" name="addCancel" data-role="button">Cancel</a>
+                </div>
+            </form>
+        </section>
+
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h1> &copy; Brett Hall and Singithi Kandage </h1>
+        </footer>
+    </div> <!-- AddProduct page end -->
+
+
+    <!--ModifyProduct page-->  <!-- Only available if logged in user is a vendor-->
+    <div data-role="page" id="pageModifyProduct" data-url="pageModifyProduct" class="page-background">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <img src="img/logo-img.png" class="ui-btn-left header-logo"/>
+            <h1>StockBoy</h1>
+            <a href="#pageAccount" data-theme="b" data-icon="user" class="ui-btn-right account-btn">Account</a>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#pageHome" data-icon="home" data-theme="a">About</a></li>
+                    <li><a href="#pageProducts" data-icon="shop" data-theme="a">Products</a></li>
+                    <li><a href="#pageVendors" data-icon="bars" data-theme="a">Vendors</a></li>
+                    <li><a href="#pageMyFarm" data-icon="grid" data-theme="a" class="ui-btn-active ui-state-persist farm-page-link">MyFarm</a></li>
+                    <li><a href="#pageShoppingList" data-icon="heart" data-theme="a">Shopping List</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section data-role="content">
+
+            <h3 align="center">Modify a Product</h3>
+
+            <form name="frmModifyVendorProduct" id="frmModifyVendorProduct">
+
+                <label for="selModifyProduct">Product</label>
+                <select id="selModifyProduct" name="selModifyProduct">
+                    <!-- Autogenerate products here-->
+                </select>
+
+                <label for="txtModifyQuantity">Quantity</label>
+                <input type="number" id="txtModifyQuantity" name="txtModifyQuantity" value="">
+
+
+                <label for="txtModifyPrice">Price</label>
+                <input type="number" id="txtModifyPrice" name="txtModifyPrice" value="">
+
+                <label for="chxModifyOnSale">
+                    <input type="checkbox" class="" name="chxModifyOnSale" id="chxModifyOnSale" data-theme="a" data-iconpos="left">On Sale
+                </label>
+
+                <div data-role="controlgroup" data-type="horizontal">
+                    <a href="#pageMyFarm" id="btnModifyCancel" name="modifyCancel" data-role="button" style="background-color: gold">Cancel</a>
+                    <a href="#" id="btnModifyDelete" name="modifyDelete" data-role="button" style="background-color: #1d1d1d; color:white">Delete</a>
+                    <a href="#" id="btnModifyUpdate" name="modifyUpdate" data-role="button" style="background-color: #3388cc; color: white;">Update</a>
+                </div>
+            </form>
+        </section>
+
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h1> &copy; Brett Hall and Singithi Kandage </h1>
+        </footer>
+    </div> <!-- ModifyProduct page end -->
+
+
+    <!--Shopping List page--> <!-- Only shows if logged in user is a vendor-->
+    <div data-role="page" id="pageShoppingList" data-url="pageShoppingList" class="page-background">
+        <header data-role="header" data-theme="b" data-position="fixed">
+            <img src="img/logo-img.png" class="ui-btn-left header-logo"/>
+            <h1>StockBoy</h1>
+            <a href="#pageAccount" data-theme="b" data-icon="user" class="ui-btn-right account-btn">Account</a>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#pageHome" data-icon="home" data-theme="a">About</a></li>
+                    <li><a href="#pageProducts" data-icon="shop" data-theme="a">Products</a></li>
+                    <li><a href="#pageVendors" data-icon="bars" data-theme="a">Vendors</a></li>
+                    <li><a href="#pageMyFarm" data-icon="grid" data-theme="a" class="farm-page-link">MyFarm</a></li>
+                    <li><a href="#pageShoppingList" data-icon="heart" data-theme="a" class="ui-btn-active ui-state-persist">Shopping List</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <section data-role="content">
+
+            <h3 align="center">Shopping List</h3>
+
+            <form class="ui-filterable">
+                <input id="filterShoppingList" data-type="search">
+            </form>
+
+            <ul data-role="listview" data-filter="true" data-input="#filterShoppingList" class="ui-listview-inset"
+                data-split-icon="delete" data-theme="a" data-split-theme="b" id="lstShoppingList">
+                <!-- Generate shopping list items -->
+            </ul>
+
+            <div data-role="popup" id="dlgShoppingListDetail" style="max-width:80vw;">
+                <div data-role="header">
+                    <h1>Product</h1>
+                </div>
+                <div role="main" class="ui-content">
+                    <img src="img/vegetable.png" class="list-icon">
+                    <h3 id="dg-sl-ProductName"></h3>
+                    <p id="dg-sl-ProductPrice"></p>
+                    <p id="dg-sl-VendorName"></p>
+                </div>
+            </div>
+
+            <div data-role="popup" id="dlgDeleteProduct" style="width:80vw;">
+                <div data-role="header">
+                    <h1>Are you sure you want to remove this item?</h1>
+                </div>
+                <div role="main" class="ui-content">
+                    <p>This action cannot be undone.</p>
+                    <div class="mc-text-center"><a href="#" id="btnConfirmDelete" class="ui-btn ui-corner-all ui-shadow ui-btn-mini mc-top-margin-1-5">OK</a></div>
+                    <div class="mc-text-center"><a id="btnCancelDelete" class="ui-btn ui-corner-all ui-shadow ui-btn-mini mc-top-margin-1-5">Cancel</a></div>
+                </div>
+            </div>
+        </section>
+
+        <footer data-role="footer" data-theme="b" data-position="fixed">
+            <h1> &copy; Brett Hall and Singithi Kandage </h1>
+        </footer>
+    </div> <!-- Shopping List page end -->
+
+    </body>
+</html>

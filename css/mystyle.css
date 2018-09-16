@@ -1,0 +1,109 @@
+/*Main*/
+body{
+    font-family: Bahnschrift;
+    text-shadow: none !important;
+}
+h3{
+    margin: 0.5em;
+}
+a{
+    text-decoration: none;
+}
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
+    text-shadow: none !important;
+}
+.ui-page-theme-a a:visited, html .ui-bar-a a:visited, html .ui-body-a a:visited, html body .ui-group-theme-a a:visited{
+    color: darkolivegreen;
+}
+.background{
+    background: url(../img/hero-img.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100vh;
+}
+.ui-bar-b,
+.ui-page-theme-b .ui-bar-inherit,
+html .ui-bar-b .ui-bar-inherit,
+html .ui-body-b .ui-bar-inherit,
+html body .ui-group-theme-b .ui-bar-inherit{
+    background-color: darkolivegreen;
+}
+
+.ui-page-theme-b .ui-btn{
+    background-color: darkolivegreen;
+}
+
+html head + body .ui-btn.ui-btn-a.ui-btn-active{
+    background-color: #e0821d;
+}
+.page-background{
+    background-color: yellowgreen;
+    background-image: url(../img/nasty-fabric.png);
+}
+.yellow-centered-rounded{
+    background-color: #bced40;
+    background-image: url(../img/nasty-fabric.png);
+    border-radius: 2em;
+    margin: 0 auto;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    padding: 1.5em 1em;
+    width: 80%;
+}
+.btn-green{
+    background-color: darkolivegreen;
+}
+
+
+/*Sign In Page*/
+
+
+/*Logo*/
+.header-logo{
+    width: 50px;
+}
+.logo{
+    font-family: "Cooper Black";
+    color: rgb(62, 89, 16);
+    margin: 0 0 1em 0;
+}
+.logo-img{
+    width: 30%;
+    margin: 0 auto;
+}
+
+/*Forms*/
+.input-aside{
+    width: 49%;
+    display: inline-block;
+}
+.ui-radio{
+    width: 45vw;
+}
+
+
+/*Vendors Page*/
+.list-icon{
+    width:80%;
+    height:80%;
+}
+
+/*Map*/
+#map-canvas, #my-map-canvas {
+    padding: 0;
+    min-width: 90vw;
+    min-height: 65vh;
+}
+
+/*Errors*/
+label.error{
+    color: #F00;
+    font-weight: bold;
+}
+
+input.error,select.error,textarea.error {
+    border: 1px red solid;
+}
+
